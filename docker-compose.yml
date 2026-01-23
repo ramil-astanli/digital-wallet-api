@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    container_name: wallet-db
+    environment:
+      POSTGRES_USER: ramoo19
+      POSTGRES_PASSWORD: 12341234
+      POSTGRES_DB: wallet_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app: # BU HİSSƏNİ ƏLAVƏ ETDİK
+    build: .
+    container_name: wallet-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      # Verilənlər bazası məlumatlarını Docker-in daxili şəbəkəsinə görə ötürürük
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/wallet_db
+      SPRING_DATASOURCE_USERNAME: ramoo19
+      SPRING_DATASOURCE_PASSWORD: 12341234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+volumes:
+  postgres_data:

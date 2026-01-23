@@ -18,7 +18,7 @@ This project is a robust, production-ready **Digital Wallet Backend** built with
 * **Data**: Spring Data JPA, Hibernate 7, PostgreSQL
 * **Mapping**: MapStruct (for clean DTO/Entity separation)
 * **DevOps**: Docker, Docker Compose
-* **Tooling**: Lombok, Maven, Postman
+* **Tooling**: Lombok, Gradle, Postman
 
 ---
 

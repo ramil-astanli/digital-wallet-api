@@ -33,9 +33,9 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 
-	annotationProcessor 'org.projectlombok:lombok' // Öncə Lombok kodu generate etsin
-	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0' // Sonra binding
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final' // Ən son MapStruct
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
 	runtimeOnly 'org.postgresql:postgresql'
 

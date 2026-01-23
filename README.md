@@ -14,7 +14,7 @@ This project is a robust, production-ready **Digital Wallet Backend** built with
 
 ## Tech Stack
 
-* **Backend**: Java 21, Spring Boot 3.4
+* **Backend**: Java 21, Spring Boot 4.0.1
 * **Data**: Spring Data JPA, Hibernate 7, PostgreSQL
 * **Mapping**: MapStruct (for clean DTO/Entity separation)
 * **DevOps**: Docker, Docker Compose

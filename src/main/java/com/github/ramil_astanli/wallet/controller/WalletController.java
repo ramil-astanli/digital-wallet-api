@@ -21,21 +21,18 @@ public class WalletController {
 
     private final WalletService walletService;
 
-    // 1. Yeni cüzdan yaradılması
     @PostMapping
     public ResponseEntity<WalletResponseDTO> create(@Valid @RequestBody WalletRequestDTO request) {
         WalletResponseDTO response = walletService.createWallet(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // 2. Bütün cüzdanların siyahısı
     @GetMapping
     public ResponseEntity<List<WalletResponseDTO>> getAll() {
         List<WalletResponseDTO> response = walletService.getAllWallets();
         return ResponseEntity.ok(response);
     }
 
-    // 5. ID-yə görə cüzdanı tapmaq
     @GetMapping("/{id}")
     public ResponseEntity<WalletResponseDTO> getById(@PathVariable Long id) {
         return ResponseEntity.ok(walletService.getById(id));
@@ -53,7 +50,6 @@ public class WalletController {
         return ResponseEntity.ok(response);
     }
 
-    // 4. Bütün əməliyyat tarixçəsi (Transaction history)
     @GetMapping("/transactions")
     public ResponseEntity<List<TransactionResponseDTO>> getAllTransactions() {
         List<TransactionResponseDTO> response = walletService.getAllTransactions();

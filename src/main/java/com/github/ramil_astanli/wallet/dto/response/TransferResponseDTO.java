@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class TransferResponseDTO {
-    private String transactionId; // Əməliyyatın unikal kodu (məs: UUID)
-    private String status;        // SUCCESS, FAILED
+    private String transactionId;
+    private String status;
     private BigDecimal amount;
-    private String fromOwner;     // Göndərənin adı
-    private String toOwner;       // Alanın adı
+    private String fromOwner;
+    private String toOwner;
     private LocalDateTime timestamp;
 }

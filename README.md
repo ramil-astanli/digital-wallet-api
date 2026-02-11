@@ -12,6 +12,16 @@ This project is a robust, production-ready **Digital Wallet Backend** built with
 * **Validation & Error Handling**: Global exception handling for business logic (e.g., "Insufficient Funds", "Wallet Not Found") and Jakarta Validation for API inputs.
 * **Microservice Ready**: Designed with a decoupled structure, ready to be migrated to a Spring Cloud environment (Eureka, Gateway).
 
+
+
+## 🚀 Advanced Features & Production Readiness
+
+* **Secure Infrastructure**: Orchestrated with **Nginx** as a reverse proxy to handle incoming traffic and mask the internal Spring Boot architecture.
+* **Stateless JWT Security**: Fully integrated **Spring Security 6** with JWT-based authentication, implementing a stateless architecture for better scalability.
+* **Resilience & Fault Tolerance**:
+    * **Spring Retry**: Implemented exponential backoff strategies for critical operations like Wallet creation.
+    * **Automated Error Recovery**: Failed background tasks are automatically captured in a `failed_operation` log and triggers an instant **SMTP alert** to the administrator.
+* **Event-Driven Wallet Provisioning**: Utilizes `ApplicationEventPublisher` and `@TransactionalEventListener` to decouple user registration from financial account setup, ensuring high performance.
 ## Tech Stack
 
 * **Backend**: Java 21, Spring Boot 4.0.1

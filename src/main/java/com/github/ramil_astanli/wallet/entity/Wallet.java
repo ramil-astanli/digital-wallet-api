@@ -1,5 +1,6 @@
 package com.github.ramil_astanli.wallet.entity;
 
+import com.github.ramil_astanli.wallet.auth.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +10,9 @@ import org.hibernate.annotations.SQLDelete;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "wallets")
+@Table(name = "wallets", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id", "currency"})
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,9 +25,9 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name cannot be blank")
-    @Column(nullable = false)
-    private String ownerName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @NotNull(message = "Balance cannot be null or negative")
     @Column(nullable = false)

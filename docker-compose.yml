@@ -11,19 +11,47 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  app: # BU HİSSƏNİ ƏLAVƏ ETDİK
+  redis:
+    image: redis:7-alpine
+    container_name: wallet-redis
+    ports:
+      - "6379:6379"
+
+  app:
     build: .
     container_name: wallet-app
-    ports:
-      - "8080:8080"
     depends_on:
       - db
+      - redis
     environment:
-      # Verilənlər bazası məlumatlarını Docker-in daxili şəbəkəsinə görə ötürürük
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/wallet_db
-      SPRING_DATASOURCE_USERNAME: ramoo19
-      SPRING_DATASOURCE_PASSWORD: 12341234
+      SPRING_DATASOURCE_URL: ${DB_URL:-jdbc:postgresql://db:5432/wallet_db}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-ramoo19}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-12341234}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: ramilastanli19@gmail.com
+      SPRING_MAIL_PASSWORD: kphltnpmzmorsipc
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+
+      SPRING_DATA_REDIS_HOST: ${REDIS_HOST:-redis}
+      SPRING_DATA_REDIS_PORT: ${REDIS_PORT:-6379}
+
+      APP_JWT_SECRET: ${JWT_SECRET:-ZmFzdC13YWxsZXQtYXBwLXNlY3JldC1rZXktZm9yLTIwMjY=}
+      APP_JWT_EXPIRATION: 900000
+      APP_JWT_REFRESH_EXPIRATION: 604800000
+
+  nginx:
+    image: nginx:latest
+    container_name: wallet-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
 
 volumes:
   postgres_data:

@@ -8,7 +8,11 @@ import java.math.BigDecimal;
 @Builder
 public class WalletResponseDTO {
     private Long id;
-    private String ownerName;
     private BigDecimal balance;
     private String currency;
+
+    private Long userId;
+    private String userEmail;
+    private String userFirstName;
+    private String userLastName;
 }

@@ -11,7 +11,9 @@ import java.util.Optional;
 
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, Long> {
-    List<Wallet> findAllByActiveTrue();
+    List<Wallet> findAllByActiveTrueAndUserId(Long userId);
+
+    Optional<Wallet> findByIdAndActiveTrue(Long id);
 
     @Query(value = "SELECT * FROM wallets WHERE id = :id", nativeQuery = true)
     Optional<Wallet> findByIdIncludingDeleted(@Param("id") Long id);

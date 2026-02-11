@@ -16,10 +16,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long fromWalletId; // Göndərən
-    private Long toWalletId;   // Alan
-    private BigDecimal amount;  // Məbləğ
+    private Long fromWalletId;
+    private Long toWalletId;
+    private BigDecimal amount;
 
-    private String description; // Məsələn: "Borc", "Hədiyyə"
-    private LocalDateTime timestamp; // Nə vaxt baş verib?
+    private String description;
+    private LocalDateTime timestamp;
 }

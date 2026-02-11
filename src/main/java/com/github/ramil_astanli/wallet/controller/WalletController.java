@@ -5,11 +5,13 @@ import com.github.ramil_astanli.wallet.dto.request.WalletRequestDTO;
 import com.github.ramil_astanli.wallet.dto.response.TransactionResponseDTO;
 import com.github.ramil_astanli.wallet.dto.response.TransferResponseDTO;
 import com.github.ramil_astanli.wallet.dto.response.WalletResponseDTO;
+import com.github.ramil_astanli.wallet.entity.CustomUserDetails;
 import com.github.ramil_astanli.wallet.service.WalletService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +30,10 @@ public class WalletController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WalletResponseDTO>> getAll() {
-        List<WalletResponseDTO> response = walletService.getAllWallets();
+    public ResponseEntity<List<WalletResponseDTO>> getAllWallets(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        Long userId = userDetails.getId();
+
+        List<WalletResponseDTO> response = walletService.getAllWallets(userId);
         return ResponseEntity.ok(response);
     }
 
@@ -50,9 +54,9 @@ public class WalletController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/transactions")
-    public ResponseEntity<List<TransactionResponseDTO>> getAllTransactions() {
-        List<TransactionResponseDTO> response = walletService.getAllTransactions();
+    @GetMapping("/transactions/{walletId}")
+    public ResponseEntity<List<TransactionResponseDTO>> getTransactionByWalletId(@PathVariable Long walletId) {
+        List<TransactionResponseDTO> response = walletService.getTransactionByWalletId(walletId);
         return ResponseEntity.ok(response);
     }
 

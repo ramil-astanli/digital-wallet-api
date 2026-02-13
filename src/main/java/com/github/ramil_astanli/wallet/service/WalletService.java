@@ -49,7 +49,7 @@ public class WalletService {
     private final FailedOperationRepository failedOperationRepository;
     private final EmailService emailService;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW) // Hər cəhddə YENİ tranzaksiya aç // Hər bir təkrar cəhd üçün yeni və təmiz bir tranzaksiya açır
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Retryable(
             retryFor = { QueryTimeoutException.class, RuntimeException.class },
             maxAttempts = 3,

@@ -22,6 +22,21 @@ This project is a robust, production-ready **Digital Wallet Backend** built with
     * **Spring Retry**: Implemented exponential backoff strategies for critical operations like Wallet creation.
     * **Automated Error Recovery**: Failed background tasks are automatically captured in a `failed_operation` log and triggers an instant **SMTP alert** to the administrator.
 * **Event-Driven Wallet Provisioning**: Utilizes `ApplicationEventPublisher` and `@TransactionalEventListener` to decouple user registration from financial account setup, ensuring high performance.
+
+
+## Configuration
+For security reasons, sensitive information like SMTP passwords are not hardcoded.
+To run this project, you need to set an environment variable:
+
+- **SMTP_PASS**: Your Google App Password (16 characters)
+
+### How to run locally:
+1. Clone the repository.
+2. In your IDE (e.g., IntelliJ IDEA), go to `Run/Debug Configurations`.
+3. Add `SMTP_PASS` to the **Environment Variables** section.
+4. Run the application.
+
+
 ## Tech Stack
 
 * **Backend**: Java 21, Spring Boot 4.0.1

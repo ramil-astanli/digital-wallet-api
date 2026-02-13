@@ -32,7 +32,7 @@ services:
       SPRING_MAIL_HOST: smtp.gmail.com
       SPRING_MAIL_PORT: 587
       SPRING_MAIL_USERNAME: ramilastanli19@gmail.com
-      SPRING_MAIL_PASSWORD: kphltnpmzmorsipc
+      SPRING_MAIL_PASSWORD: ${SMTP_PASS}
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
 

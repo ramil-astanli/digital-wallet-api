@@ -17,7 +17,8 @@ public class WalletEventListener {
     private final WalletService walletService;
 
     @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)    public void handleUserRegisteredEvent(UserRegisteredEvent event) {
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void handleUserRegisteredEvent(UserRegisteredEvent event) {
         log.info("Event tutuldu, cüzdan yaradılması servisinə göndərilir...");
         walletService.createWalletWithRetry(event.getUser());
     }

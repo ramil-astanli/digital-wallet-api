@@ -102,3 +102,6 @@ JSON
   "amount": 100.0,
   "currency": "USD"
 }
+
+## ⚖️ License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -1,6 +1,3 @@
-Bütün detalları birləşdirərək, həm texniki cəhətdən zəngin, həm də vizual olaraq səliqəli olan yekun README.md faylını hazırladım. Bu mətni birbaşa layihənə yapışdıra bilərsən.
-💳 Digital Wallet Management System (RESTful API)
-
 This project is a robust, production-ready Digital Wallet Backend built with Spring Boot 3.4.1. It manages financial accounts, handles multi-currency transactions, and ensures data integrity with manual transaction management and soft-delete capabilities.
 🌟 Professional Highlights & Features
 
